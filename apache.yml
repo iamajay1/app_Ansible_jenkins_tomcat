@@ -2,14 +2,9 @@
 - hosts: webserver-app 
   become: yes
   tasks:
-    - name: install apache
-      apt: name=apache2 update_cache=yes state=latest
-
     - name: Start Apache server
       service:
-        name: httpd
-        state: started
-        enabled: True
+        name=apache2 state=restarted
         
     - name: Deploy static website
       copy:
