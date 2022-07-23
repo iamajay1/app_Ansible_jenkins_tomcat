@@ -5,10 +5,11 @@
     - name: install apache
       apt: name=apache2 update_cache=yes state=latest
 
-    - name: enabled mod_rewrite
-      apache2_module: name=rewrite state=present
-      notify:
-        - restart apache2
+    - name: Start Apache server
+      service:
+        name: httpd
+        state: started
+        enabled: True
         
     - name: Deploy static website
       copy:
